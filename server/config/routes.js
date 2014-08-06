@@ -2,12 +2,18 @@
  * Created by HenryGau on 8/4/2014.
  */
 
-
-var auth = require('./auth');
+var auth = require('./auth'),
+    mongoose = require('mongoose'),
+    User = mongoose.model('User');
 module.exports = function (app) {
+    app.get('/api/users', auth.requiresRole('admin'),
+        function(req, res){
+        User.find({}).exec(function(err, collection){
+            res.send(collection);
+        })
+    });
+
     app.get('/partials/*', function (req, res) {
-        console.log("rendering /partials/*");
-        console.log(req.params);
         res.render('../../public/app/' + req.params[0]);
     });
 
@@ -19,8 +25,8 @@ module.exports = function (app) {
     });
 
     app.get('*', function (req, res) {
-        console.log("rendering *");
         res.render('index', {
+            bootstrappedUser: req.user
         });
     });
 };

@@ -17,14 +17,15 @@ module.exports = function (config) {
         lastName: String,
         userName: String,
         salt: String,
-        hashed_pwd: String
+        hashed_pwd: String,
+        roles: [String]
     });
 
     userSchema.methods = {
         authenticate: function(passwordToMatch){
             return hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
         }
-    }
+    };
     var User = mongoose.model('User', userSchema);
 
     User.find({}).exec(function (err, collection) {
@@ -33,12 +34,12 @@ module.exports = function (config) {
             salt = createSalt();
             hash = hashPwd(salt, 'joe');
             User.create({firstName: 'Joe', lastName: 'Eames',
-                userName: 'joe', salt: salt, hashed_pwd: hash});
+                userName: 'joe', salt: salt, hashed_pwd: hash, roles: ['admin']});
 
             salt = createSalt();
             hash = hashPwd(salt, 'john');
             User.create({firstName: 'John', lastName: 'Papa',
-                userName: 'john', salt: salt, hashed_pwd: hash});
+                userName: 'john', salt: salt, hashed_pwd: hash, roles:[]});
 
             salt = createSalt();
             hash = hashPwd(salt, 'dan');

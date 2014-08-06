@@ -1,19 +1,20 @@
 /**
  * Created by HenryGau on 8/5/2014.
  */
-angular.module('app').factory('mvAuth', function($http, mvIdentity, $q){
+angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
     return {
         authenticateUser: function(username, password){
             var dfd = $q.defer();
             $http.post('/login', {username: username, password: password})
                 .then(function (response) {
                     if (response.data.success) {
-                        mvIdentity.currentUser = response.data.user;
-//                        mvNotifier.notify('You have sucessfully signed in!');
+                        var user = new mvUser();
+                        angular.extend(user, response.data.user);
+
+                        mvIdentity.currentUser = user;
                         dfd.resolve(true);
                     } else {
                         dfd.resolve(false);
-//                        mvNotifier.notify('Username/Password is not correct!');
                     }
                 });
             return dfd.promise;
@@ -25,6 +26,13 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q){
                 dfd.resolve();
             });
             return dfd.promise;
+        },
+        authorizeCurrentUserForRoute: function(role){
+            if(mvIdentity.isAuthorized(role)){
+                return true;
+            } else {
+                return $q.reject('not authorized');
+            }
         }
     }
 });
