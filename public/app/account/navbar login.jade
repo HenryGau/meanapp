@@ -10,11 +10,13 @@
         button.btn.btn-primary(ng-click="signin(username, password)") Sign In
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li.dropdown
-            a.dropdown-toggle(href="", data-toogle="dropdown")
+            a.dropdown-toggle(href="", data-toggle="dropdown")
                 | {{identity.currentUser.firstName + " " + identity.currentUser.lastName}}
                 b.caret
             ul.dropdown-menu
-                li (ng-show="identity.currentUser.isAdmin()")
+                li(ng-show="identity.currentUser.isAdmin()")
                     a(href="/admin/users") User Admin
                 li
-                    a(href="", ng-click="signout()") Sign Out
+                    a(href="/profile") Profile
+                li
+                    a(href="", on-click="signout()") Sign Out

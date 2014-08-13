@@ -16,6 +16,7 @@ exports.authenticate = function(req, res, next) {
         }
         req.logIn(user, function(err){
             if(err) { return next(err); }
+            // We set user: user here!
             res.send({success: true, user: user});
         })
     });

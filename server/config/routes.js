@@ -9,7 +9,12 @@ var auth = require('./auth'),
 
 module.exports = function (app) {
     app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
+
+    // To create a new user
     app.post('/api/users', users.createUser);
+
+    // To update current user profile
+    app.put('/api/users', users.updateUser);
 
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
@@ -23,6 +28,8 @@ module.exports = function (app) {
     });
 
     app.get('*', function (req, res) {
+        console.log("getting *");
+        console.log(req.user);
         res.render('index', {
             bootstrappedUser: req.user
         });
