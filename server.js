@@ -20,14 +20,5 @@ require('./server/config/routes')(app);
 
 require('./server/config/passport')();
 
-
-//var messageSchema = mongoose.Schema({message: String});
-//var Message = mongoose.model('Message', messageSchema);
-//var mongoMessage;
-//Message.findOne().exec(function(err, messageDoc){
-//    mongoMessage = messageDoc.message;
-//    console.log("found Messge:" + mongoMessage);
-//});
-
 app.listen(config.port);
 console.log('Listening on port ' + config.port + "...");

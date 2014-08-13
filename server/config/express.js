@@ -11,8 +11,6 @@ var express = require('express'),
     passport = require('passport');
 
 module.exports = function(app, config) {
-//    console.log("TEST EXPRESS");
-//    console.log(app);
     console.log("checking : "  + config);
     function compile(str, path){
         return stylus(str).set('filename', path);
