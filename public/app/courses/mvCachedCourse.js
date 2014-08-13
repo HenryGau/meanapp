@@ -2,8 +2,7 @@
  * Created by HenryGau on 8/14/2014.
  */
 
-angular.module('app').factory('mvCachedCourse',
-    function (mvCourse) {
+angular.module('app').factory('mvCachedCourse', function (mvCourse) {
         var courseList;
 
         return {
