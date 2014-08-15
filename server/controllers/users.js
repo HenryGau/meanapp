@@ -55,8 +55,6 @@ exports.updateUser = function (req, res) {
         req.user.hashed_pwd = encrypt.hashPwd(req.user.sale, userUpdates.password);
     }
 
-    console.log("before save");
-    console.log(req.user);
     req.user.save(function (err) {
         if (err) {
             res.status(400);

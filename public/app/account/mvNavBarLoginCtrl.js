@@ -2,10 +2,10 @@
  * Created by HenryGau on 8/4/2014.
  */
 
-angular.module('app').controller('mvNavBarLoginCtrl', function ($scope, $http, mvIdentity, mvNotifier, mvAuth) {
-
+angular.module('app').controller('mvNavBarLoginCtrl', function ($scope, $http, $location,
+                                                                mvIdentity, mvNotifier, mvAuth) {
     $scope.identity = mvIdentity;
-    $scope.signin = function (username, password) {
+    $scope.signIn = function (username, password) {
         mvAuth.authenticateUser(username, password).then(function(success){
             if(success){
                 mvNotifier.notify("You have signed in!");
@@ -15,7 +15,7 @@ angular.module('app').controller('mvNavBarLoginCtrl', function ($scope, $http, m
         })
     }
 
-    $scope.signout = function(){
+    $scope.signOut = function(){
         mvAuth.logoutUser().then(function(){
             $scope.username = "";
             $scope.password = "";

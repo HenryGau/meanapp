@@ -7,7 +7,7 @@
             input.form-control(placeholder="Email", ng-model="username")
         .form-group
             input.form-group(type="password", placeholder="Password", ng-model="password")
-        button.btn.btn-primary(ng-click="signin(username, password)") Sign In
+        button.btn.btn-primary(ng-click="signIn(username, password)") Sign In
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li.dropdown
             a.dropdown-toggle(href="", data-toggle="dropdown")
@@ -19,4 +19,4 @@
                 li
                     a(href="/profile") Profile
                 li
-                    a(href="", on-click="signout()") Sign Out
+                    a(href="", ng-click="signOut()") Sign Out

@@ -27,6 +27,7 @@ module.exports = function (app) {
     app.post('/login', auth.authenticate);
 
     app.post('/logout', function(req, res){
+        console.log("Logging out", req, " WWWWWWWWWWWWWW", req.logout);
         req.logout();
         res.end();
     });
@@ -36,8 +37,7 @@ module.exports = function (app) {
     });
 
     app.get('*', function (req, res) {
-        console.log("getting *");
-        console.log(req.user);
+        console.log("Not service all, rendering index");
         res.render('index', {
             bootstrappedUser: req.user
         });
