@@ -49,6 +49,7 @@ function createDefaultUsers() {
             hash = encrypt.hashPwd(salt, 'dan');
             User.create({firstName: 'Dan', lastName: 'Buddy',
                 userName: 'dan', salt: salt, hashed_pwd: hash});
+            console.log("Default users created");
         }
     });
 };

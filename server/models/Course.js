@@ -15,7 +15,7 @@ var Course = mongoose.model('Course', courseSchema);
 
 function createDefaultCourses() {
     Course.find({}).exec(function (err, collection) {
-        if (collection.lenght === 0) {
+        if (collection.length === 0) {
             Course.create({title: 'C++ for dummies', featured: true, published: new Date('10/2/2014'), tags: ['C++']});
             Course.create({title: 'Super Duper Expert C#', featured: false, published: new Date('10/1/2014'), tags: ['C#']});
             Course.create({title: 'Visual Basic for Visual Basic Developers', featured: false, published: new Date('7/12/2013'), tags: ['VB']});
