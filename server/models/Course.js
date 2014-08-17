@@ -15,6 +15,8 @@ var Course = mongoose.model('Course', courseSchema);
 
 function createDefaultCourses() {
     Course.find({}).exec(function (err, collection) {
+        console.log("Try to create Default courses");
+        console.log("Existing collection size:", collection.length);
         if (collection.length === 0) {
             Course.create({title: 'C++ for dummies', featured: true, published: new Date('10/2/2014'), tags: ['C++']});
             Course.create({title: 'Super Duper Expert C#', featured: false, published: new Date('10/1/2014'), tags: ['C#']});
