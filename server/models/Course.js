@@ -2,18 +2,18 @@
  * Created by HenryGau on 8/13/2014.
  */
 
-var mongoose = require('mongoose');
+ var mongoose = require('mongoose');
 
-var courseSchema = mongoose.Schema({
+ var courseSchema = mongoose.Schema({
     title: {type: String, required: '{PATH} is required!'},
     featured: {type: Boolean, required: '{PATH} is required!'},
     published: {type: Date, required: '{PATH} is required!'},
     tags: [String]
 });
 
-var Course = mongoose.model('Course', courseSchema);
+ var Course = mongoose.model('Course', courseSchema);
 
-function createDefaultCourses() {
+ function createDefaultCourses() {
     Course.find({}).exec(function (err, collection) {
         console.log("Try to create Default courses");
         console.log("Existing collection size:", collection.length);
@@ -33,8 +33,15 @@ function createDefaultCourses() {
             Course.create({title: 'How to Deal with Narcissistic Coworkers', featured: true, published: new Date('2/15/2014'), tags: ['Misc']});
             Course.create({title: 'Death March Coding for Fun and Profit', featured: true, published: new Date('7/1/2014'), tags: ['Coding', 'Misc']});
             console.log("Default courses created");
-        }
-    })
+        };
+
+        var promise = Course.create({title: 'Testing Henry Course', featured: true, published: new Date('7/1/2014'), tags: ['Coding', 'Misc', 'Testing']});
+        promise.then(function(result){
+            console.log("Test course created Success", result);
+        }, function(err){
+            console.log("Test course created Failure", err);
+        });
+    });
 }
 
 exports.createDefaultCourses = createDefaultCourses;
