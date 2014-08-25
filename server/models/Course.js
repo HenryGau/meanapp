@@ -34,13 +34,12 @@
             Course.create({title: 'Death March Coding for Fun and Profit', featured: true, published: new Date('7/1/2014'), tags: ['Coding', 'Misc']});
             console.log("Default courses created");
         };
-
-        var promise = Course.create({title: 'Testing Henry Course', featured: true, published: new Date('7/1/2014'), tags: ['Coding', 'Misc', 'Testing']});
-        promise.then(function(result){
-            console.log("Test course created Success", result);
-        }, function(err){
-            console.log("Test course created Failure", err);
-        });
+        // var promise = Course.create({title: 'Testing Henry Course', featured: true, published: new Date('7/1/2014'), tags: ['Coding', 'Misc', 'Testing']});
+        // promise.then(function(result){
+        //     console.log("Test course created Success", result);
+        // }, function(err){
+        //     console.log("Test course created Failure", err);
+        // });
     });
 }
 

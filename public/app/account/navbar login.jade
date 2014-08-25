@@ -1,5 +1,7 @@
 .navbar-right(ng-controller="mvNavBarLoginCtrl")
-    form.navbar-form(ng-hide="identity.isAuthenticated()")
+    ul.li.visible-xs-block.visible-sm-block
+        a(href="/signup") Sign Up/Login
+    form.navbar-form.visible-md-block.visible-lg-block(ng-hide="identity.isAuthenticated()")
         ul.nav.navbar-nav
             li
                 a(href="/signup") Sign Up

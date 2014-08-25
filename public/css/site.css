@@ -1,5 +1,5 @@
 body {
-  padding-top: 69px;
+  padding-top: 71px;
 }
 .navbar-header a.navbar-brand {
   margin-top: -15px;
@@ -7,6 +7,9 @@ body {
 }
 .navbar-header a.navbar-brand h6 {
   color: #ccc;
+}
+.navbar-default {
+  height: 63px;
 }
 footer {
   padding-left: 15px;
